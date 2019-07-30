@@ -1,14 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Julie Bynum`,
     description: `Professional website of Dr. Julie Bynum, Margaret Terpenning Collegiate Professor of Internal Medicine at the University of Michigan`,
-    keywords: `Julie Bynum M.D. M.P.H. University of Michigan UMich`
+    keywords: `Julie Bynum M.D. M.P.H. University of Michigan UMich Geriatrics Research`
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-prismic',
+      options: {
+        repositoryName: 'juliebynum',
+        defaultLang: 'en-us'
+      }
+    },
     'gatsby-plugin-eslint',
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -24,7 +31,7 @@ module.exports = {
         short_name: `Julie Bynum`,
         start_url: `/`,
         display: `standalone`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/images/favicon.png`,
         theme_color_in_head: false
       }
     },

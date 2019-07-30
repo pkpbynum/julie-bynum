@@ -1,13 +1,51 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import SEO from '../seo'
-import { Title } from './styles'
+import {
+  PageContainer,
+  ContentWrapper,
+  Name,
+  NameWrapper,
+  Title,
+  Route,
+  Divider,
+  LinksWrapper
+} from './styles'
+import ContactTab from '../ContactTab'
+import Copyright from '../Copyright'
 
-export default () => (
-  <>
-    <SEO title="Home" />
-    <Title>Hi people</Title>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }} />
-  </>
-)
+export default () => {
+  const divider = useRef()
+  const links = useRef()
+
+  useEffect(() => {
+    setTimeout(() => {
+      divider.current.style.height = '200px'
+      divider.current.style.opacity = '1'
+      links.current.style.transform = 'translateX(0)'
+      links.current.style.opacity = '1'
+    }, 100)
+  })
+
+  return (
+    <PageContainer>
+      <SEO title="Home" />
+      <ContentWrapper>
+        <NameWrapper>
+          <Name>Julie Bynum, M.D., M.P.H.</Name>
+          <Title>
+            Margaret Terpenning Collegiate Professor of Internal Medicine at the
+            Univeristy of Michigan
+          </Title>
+        </NameWrapper>
+        <Divider ref={divider} />
+        <LinksWrapper ref={links}>
+          <Route to="/about">About</Route>
+          <Route to="/research">Research</Route>
+          <Route to="/team">Team</Route>
+        </LinksWrapper>
+      </ContentWrapper>
+      <Copyright />
+      <ContactTab />
+    </PageContainer>
+  )
+}
