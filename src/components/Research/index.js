@@ -10,12 +10,14 @@ import {
   Description,
   Route
 } from './styles'
+import SEO from '../seo'
 import BasicHeader from '../BasicHeader'
 import ContactTab from '../ContactTab'
 import Copyright from '../Copyright'
 
 const Research = ({ proposals }) => (
   <PageContainer>
+    <SEO title="Research" />
     <ContentContainer>
       <BasicHeader title="Research" />
       {proposals.map(

@@ -9,12 +9,14 @@ import {
   JobTitle,
   Email
 } from './styles'
+import SEO from '../seo'
 import BasicHeader from '../BasicHeader'
 import ContactTab from '../ContactTab'
 import Copyright from '../Copyright'
 
 const Team = ({ members }) => (
   <PageContainer>
+    <SEO title="Team" />
     <ContentContainer>
       <BasicHeader title="Team" />
       {members.map(

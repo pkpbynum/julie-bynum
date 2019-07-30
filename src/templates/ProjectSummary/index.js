@@ -10,6 +10,7 @@ import {
   LinksWrapper,
   ExternalLink
 } from './styles'
+import SEO from '../../components/seo'
 import ContactTab from '../../components/ContactTab'
 import BasicHeader from '../../components/BasicHeader'
 import Copyright from '../../components/Copyright'
@@ -18,6 +19,7 @@ const ProjectSummary = ({
   pageContext: { date, longDescription, title, papers }
 }) => (
   <PageContainer>
+    <SEO title="title" />
     <ContentContainer>
       <BasicHeader title={title} to="/research" />
       <Date>{moment(date).format('MMM D, YYYY')}</Date>

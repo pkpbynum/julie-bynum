@@ -8,6 +8,7 @@ import {
   ExternalLink,
   Route
 } from './styles'
+import SEO from '../seo'
 import BasicHeader from '../BasicHeader'
 import Copyright from '../Copyright'
 import ContactTab from '../ContactTab'
@@ -23,6 +24,7 @@ const About = ({
   }
 }) => (
   <PageContainer>
+    <SEO title="About" />
     <ContentContainer>
       <BasicHeader title="About" />
       <Paragraph>
