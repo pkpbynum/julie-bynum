@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
 module.exports = {
   siteMetadata: {
     title: `Julie Bynum`,
@@ -9,7 +13,8 @@ module.exports = {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'juliebynum',
-        defaultLang: 'en-us'
+        defaultLang: 'en-us',
+        accessToken: `${process.env.PRISMIC_API_KEY}`
       }
     },
     'gatsby-plugin-eslint',
@@ -17,7 +22,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -50,6 +54,8 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-offline`
   ]
 }
