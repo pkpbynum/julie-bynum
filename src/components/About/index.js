@@ -9,9 +9,9 @@ import {
   Route
 } from './styles'
 import SEO from '../seo'
-import BasicHeader from '../BasicHeader'
-import Copyright from '../Copyright'
-import ContactTab from '../ContactTab'
+import BasicHeader from '../basicHeader'
+import Copyright from '../copyright'
+import ContactTab from '../contactTab'
 
 const About = ({
   data: {
