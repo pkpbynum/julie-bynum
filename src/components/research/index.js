@@ -11,9 +11,9 @@ import {
   Route
 } from './styles'
 import SEO from '../seo'
-import BasicHeader from '../basicHeader'
-import ContactTab from '../contactTab'
-import Copyright from '../copyright'
+import BasicHeader from '../BasicHeader'
+import ContactTab from '../ContactTab'
+import Copyright from '../Copyright'
 
 const Research = ({ proposals }) => (
   <PageContainer>

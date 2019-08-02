@@ -10,8 +10,8 @@ import {
   Divider,
   LinksWrapper
 } from './styles'
-import ContactTab from '../contactTab'
-import Copyright from '../copyright'
+import ContactTab from '../ContactTab'
+import Copyright from '../Copyright'
 
 export default () => {
   const divider = useRef()

@@ -9,9 +9,9 @@ import {
   Route
 } from './styles'
 import SEO from '../seo'
-import BasicHeader from '../basicHeader'
-import Copyright from '../copyright'
-import ContactTab from '../contactTab'
+import BasicHeader from '../BasicHeader'
+import Copyright from '../Copyright'
+import ContactTab from '../ContactTab'
 
 const About = ({
   data: {
@@ -32,7 +32,7 @@ const About = ({
         {biography.map(({ text }) => `${text}\n\n`)}
       </Paragraph>
       <LinksWrapper>
-        <ExternalLink href="https://www.linkedin.com/in/julie-bynum-95880147/">
+        <ExternalLink href="https://www.ncbi.nlm.nih.gov/myncbi/julie.bynum.1/bibliography/public/">
           See all publications
         </ExternalLink>
         <ExternalLink href="https://www.linkedin.com/in/julie-bynum-95880147/">
