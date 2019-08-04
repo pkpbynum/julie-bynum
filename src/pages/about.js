@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import About from '../components/About'
+import About from '../components/about'
 
 export default () => (
   <StaticQuery
