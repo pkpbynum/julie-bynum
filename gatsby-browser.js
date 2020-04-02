@@ -7,7 +7,11 @@
 // You can delete this file if you're not using it
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { registerLinkResolver } from 'gatsby-source-prismic-graphql'
 import theme from './src/theme'
+import { linkResolver } from './src/prismic-configuration'
+
+registerLinkResolver(linkResolver)
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>{element}</ThemeProvider>

@@ -1,40 +1,34 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Team from '../components/team'
 
-export default () => (
-  <StaticQuery
-    query={graphql`
-      query TeamQuery {
-        allPrismicTeamMember {
-          edges {
-            node {
-              data {
-                email {
-                  text
-                }
-                headshot {
-                  localFile {
-                    childImageSharp {
-                      resolutions(width: 200) {
-                        src
-                      }
-                    }
-                  }
-                }
-                job_title {
-                  text
-                }
-                name {
-                  text
+export const query = graphql`
+  query TeamQuery {
+    prismic {
+      allTeam_members {
+        edges {
+          node {
+            _meta {
+              id
+            }
+            email
+            headshot
+            headshotSharp {
+              childImageSharp {
+                fixed(width: 200) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
+            job_title
+            name
           }
         }
       }
-    `}
-  >
-    {data => <Team members={data.allPrismicTeamMember.edges} />}
-  </StaticQuery>
+    }
+  }
+`
+
+export default ({ data }) => (
+  <Team members={data.prismic.allTeam_members.edges} />
 )

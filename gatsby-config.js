@@ -2,6 +2,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`
 })
 
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `Julie Bynum`,
@@ -10,11 +12,34 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-prismic',
+      resolve: 'gatsby-source-prismic-graphql',
       options: {
         repositoryName: 'juliebynum',
         defaultLang: 'en-us',
-        accessToken: `${process.env.PRISMIC_API_KEY}`
+        accessToken: `${process.env.PRISMIC_API_KEY}`,
+        previews: true,
+        extraPageFields: `date
+                          title
+                          long_description
+                          _linkType
+                          papers {
+                            link {
+                              ... on PRISMIC__ExternalLink {
+                                url
+                                _linkType
+                              }
+                            }
+                            paper_title
+                          }`,
+        pages: [
+          {
+            type: 'Research_proposal',
+            match: '/proposal/:uid',
+            path: '/proposal',
+            component: path.resolve('./src/templates/ProjectSummary/index.js')
+          }
+        ],
+        sharpKeys: [/image|photo|picture/, 'headshot']
       }
     },
     'gatsby-plugin-eslint',
