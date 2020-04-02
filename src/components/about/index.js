@@ -14,12 +14,10 @@ import Copyright from '../copyright'
 import ContactTab from '../contactTab'
 
 const About = ({
-  data: {
-    biography: { raw: biography },
-    headshot: {
-      localFile: {
-        childImageSharp: { resolutions }
-      }
+  node: {
+    biography,
+    headshotSharp: {
+      childImageSharp: { fixed }
     }
   }
 }) => (
@@ -28,7 +26,7 @@ const About = ({
     <ContentContainer>
       <BasicHeader title="About" />
       <Paragraph>
-        <Headshot alt="Julie Bynum" fixed={resolutions} />
+        <Headshot alt="Julie Bynum" fixed={fixed} />
         {biography.map(({ text }) => `${text}\n\n`)}
       </Paragraph>
       <LinksWrapper>

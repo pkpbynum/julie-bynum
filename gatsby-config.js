@@ -10,11 +10,23 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-prismic',
+      resolve: 'gatsby-source-prismic-graphql',
       options: {
         repositoryName: 'juliebynum',
         defaultLang: 'en-us',
-        accessToken: `${process.env.PRISMIC_API_KEY}`
+        accessToken: `${process.env.PRISMIC_API_KEY}`,
+        previews: true,
+        pages: [
+          {
+            type: 'Research Proposal',
+            match: '/proposal/:uid',
+            path: '/proposal',
+            components: require.resolve(
+              './src/templates/ProjectSummary/index.js'
+            )
+          }
+        ],
+        sharpKeys: [/image|photo|picture/, 'headshot']
       }
     },
     'gatsby-plugin-eslint',

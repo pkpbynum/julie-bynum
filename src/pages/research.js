@@ -6,18 +6,24 @@ export default () => (
   <StaticQuery
     query={graphql`
       query ResearchQuery {
-        allPrismicResearchProposal {
-          edges {
-            node {
-              id
-              uid
-              data {
+        prismic {
+          allResearch_proposals {
+            edges {
+              node {
                 date
-                title {
-                  text
+                title
+                short_description
+                papers {
+                  link {
+                    ... on PRISMIC__ExternalLink {
+                      _linkType
+                      url
+                    }
+                  }
+                  paper_title
                 }
-                short_description {
-                  text
+                _meta {
+                  uid
                 }
               }
             }
@@ -26,7 +32,7 @@ export default () => (
       }
     `}
     render={data => (
-      <Research proposals={data.allPrismicResearchProposal.edges} />
+      <Research proposals={data.prismic.allResearch_proposals.edges} />
     )}
   />
 )

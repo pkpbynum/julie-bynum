@@ -6,28 +6,24 @@ export default () => (
   <StaticQuery
     query={graphql`
       query TeamQuery {
-        allPrismicTeamMember {
-          edges {
-            node {
-              data {
-                email {
-                  text
+        prismic {
+          allTeam_members {
+            edges {
+              node {
+                _meta {
+                  id
                 }
-                headshot {
-                  localFile {
-                    childImageSharp {
-                      resolutions(width: 200) {
-                        src
-                      }
+                email
+                headshot
+                headshotSharp {
+                  childImageSharp {
+                    fixed(width: 200) {
+                      src
                     }
                   }
                 }
-                job_title {
-                  text
-                }
-                name {
-                  text
-                }
+                job_title
+                name
               }
             }
           }
@@ -35,6 +31,6 @@ export default () => (
       }
     `}
   >
-    {data => <Team members={data.allPrismicTeamMember.edges} />}
+    {data => <Team members={data.prismic.allTeam_members.edges} />}
   </StaticQuery>
 )

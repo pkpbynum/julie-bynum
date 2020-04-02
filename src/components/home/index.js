@@ -13,7 +13,12 @@ import {
 import ContactTab from '../contactTab'
 import Copyright from '../copyright'
 
-export default () => {
+export default ({
+  info: {
+    name: [{ text: name }],
+    title: [{ text: title }]
+  }
+}) => {
   const divider = useRef()
   const links = useRef()
 
@@ -31,11 +36,8 @@ export default () => {
       <SEO title="Home" />
       <ContentWrapper>
         <NameWrapper>
-          <Name>Julie Bynum, M.D., M.P.H.</Name>
-          <Title>
-            Margaret Terpenning Collegiate Professor of Internal Medicine at the
-            Univeristy of Michigan
-          </Title>
+          <Name>{name}</Name>
+          <Title>{title}</Title>
         </NameWrapper>
         <Divider ref={divider} />
         <LinksWrapper ref={links}>

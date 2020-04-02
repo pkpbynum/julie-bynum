@@ -1,6 +1,5 @@
 import React from 'react'
 import moment from 'moment'
-import uuidv4 from 'uuidv4'
 import {
   PageContainer,
   ContentContainer,
@@ -23,17 +22,15 @@ const Research = ({ proposals }) => (
       {proposals.map(
         ({
           node: {
-            uid,
-            data: {
-              date,
-              title: { text: title },
-              short_description: { text }
-            }
+            _meta: { uid },
+            date,
+            title: [{ text: title }],
+            short_description: [{ text }]
           }
         }) => {
           const formattedDate = moment(date).format('MMM D, YYYY')
           return (
-            <GrantWrapper key={uuidv4()}>
+            <GrantWrapper key={uid}>
               <Title to={`/proposal/${uid}`}>{title}</Title>
               <Date>{formattedDate}</Date>
               <Description>{text}</Description>
