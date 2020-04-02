@@ -22,20 +22,17 @@ const Team = ({ members }) => (
       {members.map(
         ({
           node: {
-            data: {
-              email: { text: email },
-              job_title: { text: jobTitle },
-              name: { text: name },
-              headshot: {
-                localFile: {
-                  childImageSharp: { resolutions }
-                }
-              }
+            _meta: { id },
+            email: [{ text: email }],
+            job_title: [{ text: jobTitle }],
+            name: [{ text: name }],
+            headshotSharp: {
+              childImageSharp: { fixed }
             }
           }
         }) => (
-          <MemberWrapper>
-            <Headshot fixed={resolutions} />
+          <MemberWrapper key={id}>
+            <Headshot fixed={fixed} />
             <InfoWrapper>
               <Name>{name}</Name>
               <JobTitle>{jobTitle}</JobTitle>

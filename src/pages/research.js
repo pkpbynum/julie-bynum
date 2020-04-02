@@ -1,32 +1,35 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Research from '../components/research'
 
-export default () => (
-  <StaticQuery
-    query={graphql`
-      query ResearchQuery {
-        allPrismicResearchProposal {
-          edges {
-            node {
-              id
-              uid
-              data {
-                date
-                title {
-                  text
-                }
-                short_description {
-                  text
+export const query = graphql`
+  query ResearchQuery {
+    prismic {
+      allResearch_proposals {
+        edges {
+          node {
+            date
+            title
+            short_description
+            papers {
+              link {
+                ... on PRISMIC__ExternalLink {
+                  _linkType
+                  url
                 }
               }
+              paper_title
+            }
+            _meta {
+              uid
             }
           }
         }
       }
-    `}
-    render={data => (
-      <Research proposals={data.allPrismicResearchProposal.edges} />
-    )}
-  />
+    }
+  }
+`
+
+export default ({ data }) => (
+  <Research proposals={data.prismic.allResearch_proposals.edges} />
 )

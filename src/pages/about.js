@@ -1,32 +1,29 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
+
 import About from '../components/about'
 
-export default () => (
-  <StaticQuery
-    query={graphql`
-      query AboutQuery {
-        prismicAboutPage {
-          data {
-            biography {
-              raw {
-                text
-              }
-            }
-            headshot {
-              localFile {
-                url
-                childImageSharp {
-                  resolutions(width: 500) {
-                    ...GatsbyImageSharpResolutions_withWebp
-                  }
+export const query = graphql`
+  query AboutQuery {
+    prismic {
+      allAbout_pages {
+        edges {
+          node {
+            biography
+            headshot
+            headshotSharp {
+              childImageSharp {
+                fixed(width: 200) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
           }
         }
       }
-    `}
-    render={data => <About data={data.prismicAboutPage.data} />}
-  />
+    }
+  }
+`
+export default ({ data }) => (
+  <About node={data.prismic.allAbout_pages.edges[0].node} />
 )

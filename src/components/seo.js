@@ -8,24 +8,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import '../reset.css'
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            keywords
-          }
-        }
+const SITE_DATA = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+        keywords
       }
-    `
-  )
+    }
+  }
+`
 
+const SEO = ({ description, lang, meta, title, site }) => {
   const metaDescription = description || site.siteMetadata.description
 
   return (
@@ -74,4 +72,9 @@ SEO.propTypes = {
   title: PropTypes.string.isRequired
 }
 
-export default SEO
+export default props => (
+  <StaticQuery
+    query={SITE_DATA}
+    render={data => <SEO site={data.site} {...props} />}
+  />
+)
